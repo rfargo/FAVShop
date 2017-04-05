@@ -8,6 +8,7 @@ package finalproject;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -293,7 +294,8 @@ public class AdminOption extends javax.swing.JFrame {
             CheckUser cu = new CheckUser();
             cu.setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(AdminOption.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error :" + ex);
+//            Logger.getLogger(AdminOption.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel3MouseClicked
 
@@ -303,7 +305,8 @@ public class AdminOption extends javax.swing.JFrame {
             CheckIncome ci = new CheckIncome ();
             ci.setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(AdminOption.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, "Error :" + ex);
+//            Logger.getLogger(AdminOption.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel5MouseClicked
 
@@ -323,7 +326,8 @@ public class AdminOption extends javax.swing.JFrame {
             AddUpdateItem aui = new AddUpdateItem ();
             aui.setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(AdminOption.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, "Error :" + ex);
+//            Logger.getLogger(AdminOption.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel4MouseClicked
 

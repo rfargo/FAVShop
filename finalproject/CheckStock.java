@@ -43,7 +43,7 @@ public class CheckStock extends javax.swing.JFrame {
                         jTable1.setModel(dtm); // Set the Table with fresh data
             }        
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Oops, something went wrong! " + ex);
+           JOptionPane.showMessageDialog(null, "Error : " + ex);
         }
  }
          public void count() throws SQLException{
@@ -210,7 +210,7 @@ public class CheckStock extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-                    this.dispose();
+                     this.setVisible(false);
                     AdminOption ao = new AdminOption();
                     ao.setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked

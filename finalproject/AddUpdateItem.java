@@ -489,7 +489,8 @@ public class AddUpdateItem extends javax.swing.JFrame {
                 jComboBox3.addItem(list.get(i).getBrand());
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AddUpdateItem.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Something wrong : "+ex);
+//            Logger.getLogger(AddUpdateItem.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         //isi di jcombobox2
@@ -503,18 +504,27 @@ public class AddUpdateItem extends javax.swing.JFrame {
              String phoneName = (String) jComboBox3.getSelectedItem(); //galaxy
              
              UpdateStock a = new UpdateStock();
-             a.updateStock(brand,phoneName,price,amount);
-             
+             int validate = a.validate(brand, phoneName, price, amount);
+             if (validate ==4){             
+                 a.updateStock(brand,phoneName,price,amount);
              JOptionPane.showMessageDialog(null, "Updated");
-         } catch (SQLException ex) {
-             Logger.getLogger(AddUpdateItem.class.getName()).log(Level.SEVERE, null, ex);
+             }else{
+             JOptionPane.showMessageDialog(null, "Some of the data isn't filled");             
+             }
+
+         } catch (NumberFormatException ex1) {
+             JOptionPane.showMessageDialog(null, " Please fill the amount and price text field with numbers ");                          
+//             Logger.getLogger(AddUpdateItem.class.getName()).log(Level.SEVERE, null, ex);
+         }catch (SQLException ex2) {
+             JOptionPane.showMessageDialog(null, "Something wrong : " + ex2);                          
+//             Logger.getLogger(AddUpdateItem.class.getName()).log(Level.SEVERE, null, ex);
          }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                 try {
+           try {
              InputStream is = new FileInputStream(new File(s));
-             String brand =  (String) jComboBox3.getSelectedItem();
+             String brand =  String.valueOf(jComboBox1.getSelectedItem()) ;
              String phoneName = jTextField2.getText();
              String batery = jTextField3.getText();
              String cam = jTextField5.getText();
@@ -528,12 +538,24 @@ public class AddUpdateItem extends javax.swing.JFrame {
              String externalm = jTextField9.getText();
              
              AddStock a = new AddStock();
-             a.addStock(brand,phoneName,batery,cam,ram,os,price,amount,gambar,camf,internalm,externalm);
+            int validate = a.validate(brand,phoneName,batery,cam,ram,os,price,amount,gambar,camf,internalm,externalm);
+         
+            if (validate==12){            
+                a.addStock(brand,phoneName,batery,cam,ram,os,price,amount,gambar,camf,internalm,externalm);
+                JOptionPane.showMessageDialog(null, "Added");
+            } else{
+                JOptionPane.showMessageDialog(null, "Some of them isn't filled");
+            }
              
-                          JOptionPane.showMessageDialog(null, "Added");
-             
-         } catch (SQLException | FileNotFoundException ex) {
-             Logger.getLogger(AddUpdateItem.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (SQLException ex1) {
+                JOptionPane.showMessageDialog(null, "Something wrong : " + ex1);             
+//             Logger.getLogger(AddUpdateItem.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (FileNotFoundException ex2) {
+                JOptionPane.showMessageDialog(null, "Something wrong : File not found");             
+//             Logger.getLogger(AddUpdateItem.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Something wrong : Please fill the price or the amount with numbers");             
+//             Logger.getLogger(AddUpdateItem.class.getName()).log(Level.SEVERE, null, ex);
          }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -558,7 +580,7 @@ public class AddUpdateItem extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-                    this.dispose();
+                 this.setVisible(false);
                     AdminOption ao = new AdminOption();
                     ao.setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked

@@ -185,6 +185,13 @@ public class PaymentProcess extends javax.swing.JFrame {
             }
         });
 
+        jTextField4.setText("0");
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton1.setText("BUY");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -351,24 +358,33 @@ public class PaymentProcess extends javax.swing.JFrame {
             String phoneName = jLabel12.getText();
             int priceamount = Integer.parseInt(jLabel23.getText());
             int amount = Integer.parseInt(jLabel15.getText());
-            int pricetotal = Integer.parseInt(jLabel21.getText());
+            int pricetotal = Integer.parseInt(jLabel25.getText());
             int ccn = Integer.parseInt(jTextField1.getText());
             int ccv = Integer.parseInt(jTextField3.getText());
             int zip = Integer.parseInt(jTextField4.getText());
             String address =jTextField5.getText();
             
             FinalBuy fb = new FinalBuy();
+            int validate = fb.validate(ccn, ccv, zip, address);
+            
+            if (validate==4){
             fb.buy(name, brand, phoneName, priceamount, amount, pricetotal, ccn, ccv, zip, address);
             
             int amountown = fb.checkZero(brand, phoneName);
             
             if (amountown == 0){
             fb.deleteZero(brand, phoneName);
+            }            
+            JOptionPane.showMessageDialog(null, "Order Success");
+             JOptionPane.showMessageDialog(null, "Order will be send to " + address + " ZIP Code " + zip);
+            }else{
+            JOptionPane.showMessageDialog(null, "Some isn't filled");            
             }
             
-            JOptionPane.showMessageDialog(null, "Order Success");
-        } catch (SQLException ex) {
-            Logger.getLogger(PaymentProcess.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException |NumberFormatException ex) {
+                       JOptionPane.showMessageDialog(null, "Error : " + ex);
+//            JOptionPane.showMessageDialog(null, "Something wrong");            
+//            Logger.getLogger(PaymentProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -380,8 +396,10 @@ public class PaymentProcess extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         try {
-            this.dispose();
+            String name = jLabel24.getText();
+                 this.setVisible(false);
             UserBrandInterface ubi = new UserBrandInterface();
+            ubi.jLabel11.setText(name);
             ubi.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(PaymentProcess.class.getName()).log(Level.SEVERE, null, ex);
@@ -394,13 +412,18 @@ public class PaymentProcess extends javax.swing.JFrame {
             UserBrandInterface ubi = new UserBrandInterface();
             ubi.setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(PaymentProcess.class.getName()).log(Level.SEVERE, null, ex);
+                       JOptionPane.showMessageDialog(null, "Error : " + ex);
+//            Logger.getLogger(PaymentProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

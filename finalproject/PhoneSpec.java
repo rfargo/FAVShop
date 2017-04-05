@@ -396,28 +396,34 @@ public class PhoneSpec extends javax.swing.JFrame {
             
             VBuy v = new VBuy();
             int amountown = v.validate (brand,phoneName);
+            int valAmount = v.valAmount(amount);
             
             Buy b = new Buy();
-                        
-            if(amountown<amount){JOptionPane.showMessageDialog(null, "Must be less than " + amountown);}
             
-            else{
-            JOptionPane.showMessageDialog(null, "I understand and I would like to buy " + brand +" " + phoneName);
-            b.buy(brand, phoneName, amount, amountown);
+            if(valAmount == 1){            
+                if(amountown<amount){
+                    JOptionPane.showMessageDialog(null, "Must be less than " + amountown);
+                }else{
+                JOptionPane.showMessageDialog(null, "I understand and I would like to buy " + brand +" " + phoneName);
+                b.buy(brand, phoneName, amount, amountown);
                 
-            this.setVisible(false);
-            pp.setVisible(true);
+              this.setVisible(false);
+                pp.setVisible(true);
             
-            pp.jLabel24.setText(name);
-            pp.jLabel13.setText(String.valueOf(brand));
-            pp.jLabel12.setText(String.valueOf(phoneName));
-            pp.jLabel23.setText(String.valueOf(price));
-            pp.jLabel15.setText(String.valueOf(amount));
-            pp.jLabel25.setText(String.valueOf(total));
+                pp.jLabel24.setText(name);
+                pp.jLabel13.setText(String.valueOf(brand));
+                pp.jLabel12.setText(String.valueOf(phoneName));
+                pp.jLabel23.setText(String.valueOf(price));
+                pp.jLabel15.setText(String.valueOf(amount));
+                pp.jLabel25.setText(String.valueOf(total));
+                }
+            }else{
+                    JOptionPane.showMessageDialog(null, "The Amount isn't filled");
             }
             
-        } catch (SQLException ex) {
-            Logger.getLogger(PhoneSpec.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException |NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Some isn't filled");            
+//            Logger.getLogger(PhoneSpec.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -429,11 +435,14 @@ public class PhoneSpec extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         try {
-            this.dispose();
+            String name = jLabel32.getText();
+            this.setVisible(false);
             UserBrandInterface ubi = new UserBrandInterface();
+             ubi.jLabel11.setText(name);
             ubi.setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(PhoneSpec.class.getName()).log(Level.SEVERE, null, ex);
+              JOptionPane.showMessageDialog(null, "Error : " + ex);         
+//            Logger.getLogger(PhoneSpec.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jLabel10MouseClicked
 

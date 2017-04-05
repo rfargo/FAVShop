@@ -278,17 +278,24 @@ public class LoginRegister extends javax.swing.JFrame {
             String passw = password.getText();
 
             Register reg = new Register();
-            int checkNum = reg.validate(mail, fname,lname,uname, passw);
-            if (checkNum == 5){
-                reg.register(mail, fname,lname,uname, passw);
-                JOptionPane.showMessageDialog(null, "REGISTER SUCCESS");
+            int unameTaken = reg.unameTaken(uname);
+            if(unameTaken == 1){
+                 JOptionPane.showMessageDialog(null, "Username is already taken");
             }
             else{
-                JOptionPane.showMessageDialog(null, "Some of them isn't filled");
+                int checkNum = reg.validate(mail, fname,lname,uname, passw);
+                if (checkNum == 5){
+                  reg.register(mail, fname,lname,uname, passw);
+                  JOptionPane.showMessageDialog(null, "REGISTER SUCCESS");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Some of them isn't filled");
+                }
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(LoginRegister.class.getName()).log(Level.SEVERE, null, ex);
+                       JOptionPane.showMessageDialog(null, "Error : " + ex);
+//            Logger.getLogger(LoginRegister.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_registerActionPerformed
 
@@ -307,12 +314,10 @@ public class LoginRegister extends javax.swing.JFrame {
                   }//end if 2        
              
                 if (count == 1){
-                    this.dispose();
+                 this.setVisible(false);
                     UserBrandInterface ubi = new UserBrandInterface();
                     ubi.setVisible(true);
                       ubi.jLabel11.setText(un);
-
-
                 }//end if 1
                 
                 if (count == 0){
@@ -320,7 +325,8 @@ public class LoginRegister extends javax.swing.JFrame {
                 }
                 
         } catch (SQLException ex) {
-            System.out.println(ex);
+           JOptionPane.showMessageDialog(null, "Error : " + ex);
+//            System.out.println(ex);
         }
     }//GEN-LAST:event_loginActionPerformed
 
