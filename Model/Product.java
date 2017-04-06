@@ -8,7 +8,9 @@ package Model;
 /**
  *
  * @author Aditya Pribadi,Reinaldy E. Fargo, Veber Sormin
- */
+ *///ths enc
+
+
 public class Product {
 
     private int Amount;

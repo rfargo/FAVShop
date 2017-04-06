@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @author Aditya Pribadi,Reinaldy E. Fargo, Veber Sormin
  */
 public class CountUser {
-    
+    //hitung jumlah user
     public int count() throws SQLException{
                     Connect con = new Connect();
                 Connection myconObj = con.connect();

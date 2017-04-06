@@ -12,31 +12,20 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Aditya Pribadi,Reinaldy E. Fargo, Veber Sormin
  */
-public class TheModel extends AbstractTableModel {
+public class TheModel1 extends AbstractTableModel {
 
     private String[] columns;
     private Object[][] rows;
     
-    public TheModel(){}
+    public TheModel1(){}
     
-    public TheModel(Object[][] data, String[] columnName){
+    public TheModel1(Object[][] data, String[] columnName){
     
         this.rows = data;
         this.columns = columnName;
     }
 
-    
-    @Override
-    public Class getColumnClass(int column){
-// 4 is the index of the column image
-        if(column == 8){
-            return Icon.class;
-        }
-       else{
-            return getValueAt(0,column).getClass();
-        }
-    }
-    
+ 
     
     @Override
     public int getRowCount() {

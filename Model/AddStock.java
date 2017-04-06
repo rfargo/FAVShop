@@ -16,6 +16,50 @@ import java.sql.SQLException;
  * @author Aditya Pribadi,Reinaldy E. Fargo, Veber Sormin
  */
 public class AddStock {
+    // to validate
+        public int validate(String brand, String phoneName, String batery, 
+                                        String cam, String ram, String os, int price,int amount,InputStream gambar,
+                                        String camf, String internalm, String externalm) 
+                                        throws SQLException {
+        int count = 0;
+            if (brand != null && !brand.isEmpty()) {
+                 count = count +1;
+            }
+            if (phoneName != null && !phoneName.isEmpty()) {
+                 count = count +1;
+            } 
+            if (batery != null && !batery.isEmpty()) {
+                 count = count +1;
+            }            
+            if (cam != null && !cam.isEmpty()) {
+                 count = count +1;
+            }
+            if (ram != null && !ram.isEmpty()) {
+                 count = count +1;
+            }            
+            if (os != null && !os.isEmpty()) {
+                 count = count +1;
+            }
+            if (price > 0) {
+                 count = count +1;
+            } 
+            if (amount > 0) {
+                 count = count +1;
+            }            
+            if (gambar != null ) {
+                 count = count +1;
+            }
+            if (camf != null && !camf.isEmpty()) {
+                 count = count +1;
+            }            
+            if (internalm != null && !internalm.isEmpty()) {
+                 count = count +1;
+            }            
+            if (externalm != null && !externalm.isEmpty()) {
+                 count = count +1;
+            }
+            return count;                
+    }
     
     public void addStock(String brand, String phoneName, String batery, 
                                         String cam, String ram, String os, int price,int amount,InputStream gambar,
@@ -24,7 +68,8 @@ public class AddStock {
                 {
                 Connect con = new Connect();
                 Connection myconObj = con.connect();
-
+                
+                //to database
             String query = "INSERT INTO `phone information` (Brand, PhoneName,`Battery`,"
                                     + "Camera,RAM,OS,Price,Amount,Picture,CameraFront,`Internal Memory`, `External Memory`) "
                                     + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";

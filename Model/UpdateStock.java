@@ -15,6 +15,24 @@ import java.sql.SQLException;
  * @author Aditya Pribadi,Reinaldy E. Fargo, Veber Sormin
  */
 public class UpdateStock {
+        
+            public int validate(String brand, String phoneName, int price, int amount) throws SQLException{
+        int count = 0;
+            if (brand != null && !brand.isEmpty()) {
+                 count = count +1;
+            }
+            if (phoneName != null && !phoneName.isEmpty()) {
+                 count = count +1;
+            } 
+            if (price > 0 ) {
+                 count = count +1;
+            }            
+            if (amount > 0) {
+                 count = count +1;
+            }
+            return count;                
+    }
+        
             public void updateStock(String brand, String phoneName, int price, int amount) throws SQLException {
                 Connect con = new Connect();
                 Connection myconObj = con.connect();

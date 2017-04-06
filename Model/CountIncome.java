@@ -17,6 +17,8 @@ import java.util.ArrayList;
  * @author Aditya Pribadi,Reinaldy E. Fargo, Veber Sormin
  */
 public class CountIncome implements CountInc{
+    //hitung jumlah duit
+    //admin
         @Override
         public int countIncome() throws SQLException{
                 Connect con = new Connect();
@@ -41,7 +43,7 @@ public class CountIncome implements CountInc{
             
             return sum;
     }
-        
+        //hitung jumlah barang
         @Override
                 public int countOut() throws SQLException{
                 Connect con = new Connect();

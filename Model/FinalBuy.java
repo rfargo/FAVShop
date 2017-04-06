@@ -16,6 +16,25 @@ import java.sql.SQLException;
  * @author Aditya Pribadi,Reinaldy E. Fargo, Veber Sormin
  */
 public class FinalBuy implements FBuy{
+    
+                public int validate( int cnn,int cvv,int zip, String address) throws SQLException{
+        int count = 0;
+            if (cnn > 0 ) {
+                 count = count +1;
+            }            
+            if (cvv > 0) {
+                 count = count +1;
+            }
+            if (zip > 0) {
+                 count = count +1;
+            }
+            if (address != null && !address.isEmpty()) {
+                 count = count +1;
+            } 
+            return count;                
+    }
+    
+                //poly
             @Override
             public void buy(String name,String brand, String phoneName, int priceamount, int amount, 
                                         int totalprice, int cnn,int cvv,int zip, String address) throws SQLException{
@@ -45,7 +64,7 @@ public class FinalBuy implements FBuy{
             pst.close();           
     
     }
-            
+            //cek kalo habis
             @Override
             public int checkZero(String brand, String phoneName) throws SQLException{
                  Connect con = new Connect();
@@ -68,6 +87,7 @@ public class FinalBuy implements FBuy{
                 return amount;
             }
             
+            //hapus stok kosong
             @Override
             public void deleteZero(String brand, String phoneName) throws SQLException{
                  Connect con = new Connect();

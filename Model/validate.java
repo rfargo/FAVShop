@@ -17,7 +17,7 @@ import java.sql.SQLException;
  */
 public class validate {
     
-    
+        //validate username login
                 public int validate(String username, String password) throws SQLException{
              
                 Connect con = new Connect();

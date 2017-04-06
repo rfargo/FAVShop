@@ -16,6 +16,16 @@ import java.sql.SQLException;
  * @author Aditya Pribadi,Reinaldy E. Fargo, Veber Sormin
  */
 public class VBuy {
+    
+    
+      public int valAmount(int amount) throws SQLException{
+        int count = 0;
+            if (amount > 0) {
+                 count = count +1;
+            }
+            return count;                
+    }
+    
       public int validate(String brand, String phoneName) throws SQLException{
                 Connect con = new Connect();
                 Connection myconObj = con.connect();

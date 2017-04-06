@@ -8,6 +8,7 @@ package Model;
 import Controller.Connect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -44,8 +45,7 @@ public class Register implements Regis{
             if (passw != null && !passw.isEmpty()) {
                  count = count +1;
             }            
-            return count;
-                
+            return count;                
     }
     
     /**
@@ -76,6 +76,28 @@ public class Register implements Regis{
             pst.execute();
 
             pst.close();           
+    }
+    
+    @Override
+         public int unameTaken(String username) throws SQLException{
+             
+                Connect con = new Connect();
+                Connection myconObj = con.connect();
+                
+            String query ="SELECT * FROM `register` WHERE `username` = ?";
+            PreparedStatement pst = myconObj.prepareStatement(query);
+            
+                pst.setString(1,username);
+
+                ResultSet rs = pst.executeQuery();
+
+                int count = 0;
+                while(rs.next())
+                {
+                    count = count + 1;
+                }//end while
+                
+                return count;
     }
     
 }

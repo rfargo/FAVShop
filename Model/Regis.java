@@ -14,4 +14,5 @@ import java.sql.SQLException;
 public interface Regis {
          int validate(String mail, String fname, String lname, String uname, String passw)throws SQLException;
         void register(String mail, String fname, String lname, String uname, String passw) throws SQLException;
+        int unameTaken(String username) throws SQLException;
 }

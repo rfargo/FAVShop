@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * @author Aditya Pribadi,Reinaldy E. Fargo, Veber Sormin
  */
 public class CountStock {
+    //hitung gudang barng
             public int countStock() throws SQLException{
                 Connect con = new Connect();
                 Connection myconObj = con.connect();
